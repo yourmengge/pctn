@@ -1,15 +1,14 @@
 <div class="hangqing">
   <div class="adjust {{classType}}">
-    <p class="buy-title"><span *ngIf="isLastPrice">市价</span>{{text}}</p>
+    <p class="buy-title">{{text}}建议</p>
     <p class="input-p">
       <span>
         股票代码
       </span>
-      <input placeholder="请输入股票代码" maxlength="8" nz-input [(ngModel)]="code" (keyup.enter)='keyup(code)'
-        (input)="onInput()" [nzAutocomplete]="auto">
+      <input placeholder="请输入股票代码" maxlength="8" nz-input [(ngModel)]="code" (keyup.enter)='keyup(code)' (input)="onInput()"
+        [nzAutocomplete]="auto">
       <nz-autocomplete [nzWidth]='300' [nzBackfill]='false' #auto>
-        <nz-auto-option *ngFor="let option of list" (click)='selectOption(option.stockName)'
-          [nzValue]="option.stockCode">
+        <nz-auto-option *ngFor="let option of list" (click)='selectOption(option.stockName)' [nzValue]="option.stockCode">
           <span class="search-span">{{option.stockName}}</span>
           <span class="search-span">{{option.stockCode}}</span>
           <span class="search-span">{{option.pinYin}}</span>
@@ -22,25 +21,21 @@
       </span>
       <span style="width: 180px;">{{stockInfo.stockName}}</span>
     </p>
-    <p class="input-p" style="user-select:none;" *ngIf="!isLastPrice">
+    <p class="input-p" style="user-select:none;">
       <span>
         委托价格
       </span>
-      <label>
-        <a class="add-icon {{classType}}" (click)='count(-1)'>
-          <i class="anticon anticon-minus-circle-o"></i>
-        </a>
-        <input appNumberInput type="text" class="ng-pristine ng-invalid ant-input ng-touched price-input"
-          [(ngModel)]="stockInfo.appointPrice">
-        <a class="add-icon {{classType}}" (click)='count(1)' style="margin-left:10px;">
-          <i class="anticon anticon-plus-circle-o"></i>
-        </a>
-      </label>
+      <a class="add-icon {{classType}}" (click)='count(-1)'>
+        <i class="anticon anticon-minus-circle-o"></i>
+      </a>
+      <input appNumberInput type="text" class="ng-pristine ng-invalid ant-input ng-touched price-input" [(ngModel)]="stockInfo.appointPrice">
+      <a class="add-icon {{classType}}" (click)='count(1)' style="margin-left:10px;">
+        <i class="anticon anticon-plus-circle-o"></i>
+      </a>
 
     </p>
-    <p style='font-size: 13px;margin-bottom: 5px;'>
-      <span style='margin-right: 60px;' class='green'
-        (click)='selectPrice(stockHQ.priceDownlimit)'>跌停：{{stockHQ.priceDownlimit}}</span>
+    <p style='font-size: 12px;margin-bottom: 5px;'>
+      <span  style='margin-right: 60px;' class='green' (click)='selectPrice(stockHQ.priceDownlimit)'>跌停：{{stockHQ.priceDownlimit}}</span>
       <span class='red' (click)='selectPrice(stockHQ.priceUplimit)'> 涨停：{{stockHQ.priceUplimit}}</span>
     </p>
     <p class="input-p">
@@ -56,18 +51,13 @@
       <a class="add-icon {{classType}}" (click)='count2(-1)'>
         <i class="anticon anticon-minus-circle-o"></i>
       </a>
-      <input appNumberInput type="text" class="ng-pristine ng-invalid ant-input ng-touched price-input"
-        [(ngModel)]="stockInfo.appointCnt">
+      <input appNumberInput type="text" class="ng-pristine ng-invalid ant-input ng-touched price-input" [(ngModel)]="stockInfo.appointCnt">
       <a class="add-icon {{classType}}" (click)='count2(1)' style="margin-left:10px;">
         <i class="anticon anticon-plus-circle-o"></i>
       </a>
     </p>
-    <p *ngIf="!isLastPrice">
-      <span>订单金额：</span>
-      <span> {{Multiply(stockInfo.appointPrice ,stockInfo.appointCnt) | toFix}}</span>
-    </p>
     <p class="input-p">
-      <nz-radio-group [(ngModel)]="radioValue" style="color:black">
+      <nz-radio-group [(ngModel)]="radioValue">
         <label nz-radio nzValue="A" (click)='radio(1)'>全仓</label>
         <label nz-radio nzValue="B" (click)='radio(2)'>半仓</label>
         <label nz-radio nzValue="C" (click)='radio(3)'>1/3仓</label>
@@ -197,14 +187,14 @@
       {{Multiply(stockInfo.appointPrice ,stockInfo.appointCnt) | toFix}}
     </span>
   </p>
-  <!-- <p class="alert-p">
+  <p class="alert-p">
     <span>
       预估手续费：
     </span>
     <span>
       {{handle()}}
     </span>
-  </p> -->
+  </p>
 </nz-modal>
 <div>
   <div class="tabs {{isFullScreen?'isFullScreen-tabs':''}}">

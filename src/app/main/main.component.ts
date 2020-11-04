@@ -14,9 +14,7 @@ export class MainComponent implements OnInit, DoCheck {
     stockScale: '',
     ableScale: 0,
     lockScale: '',
-    limitAbleScale: 0,
-    freezeScale: '',
-    floatCashScale: ''
+    freezeScale: ''
   };
   triggerTemplate: any;
   url = '';
@@ -26,7 +24,6 @@ export class MainComponent implements OnInit, DoCheck {
   newPass = '';
   newPass2 = '';
   userName = '';
-  version = 1;
   freezaFee: any;
   constructor(public util: UtilService, public http: HttpService) {
     this.userName = this.util.userName;
@@ -103,7 +100,6 @@ export class MainComponent implements OnInit, DoCheck {
   getUserInfo() {
     this.http.userInfo().subscribe((res) => {
       Object.assign(this.userInfo, res);
-      this.version = res['cashType'] === 10 ? 2 : 1;
       this.util.ableScale = this.userInfo.ableScale;
       this.freezaFee = parseFloat(this.userInfo.lockScale) + parseFloat(this.userInfo.freezeScale);
       this.util.mainTimeOut = setTimeout(() => {

@@ -21,11 +21,6 @@ import { NumberInputDirective } from './number-input.directive';
 import { NumIntPipe } from './num-int.pipe';
 import { Round4Pipe } from './round4.pipe';
 import { ChartComponent } from './chart/chart.component';
-import { ChedanComponent } from './chedan/chedan.component';
-import { TodayappointComponent } from './todayappoint/todayappoint.component';
-import { TodaydealComponent } from './todaydeal/todaydeal.component';
-import { HistorydealComponent } from './historydeal/historydeal.component';
-import { CapitalflowComponent } from './capitalflow/capitalflow.component';
 
 registerLocaleData(zh);
 
@@ -38,16 +33,7 @@ const buyChildRoutes: Routes = [
 
 
 const appChildRoutes: Routes = [
-  { path: 'capitalflow', component: CapitalflowComponent },
-  { path: 'hold', component: HoldComponent },
-  { path: 'lastpricesell', component: BuyComponent, children: buyChildRoutes },
   { path: 'sell', component: BuyComponent, children: buyChildRoutes },
-  { path: 'chedan', component: ChedanComponent },
-  { path: 'historydeal', component: HistoryComponent },
-  { path: 'bill', component: HistoryComponent },
-  { path: 'todaydeal', component: SuccessComponent },
-  { path: 'todayappoint', component: AppointComponent },
-  { path: 'lastpricebuy', component: BuyComponent, children: buyChildRoutes },
   { path: 'buy', component: BuyComponent, children: buyChildRoutes },
   { path: 'history', component: HistoryComponent },
   { path: '', redirectTo: 'buy', pathMatch: 'full' }
@@ -73,12 +59,7 @@ const appRoutes: Routes = [
     NumberInputDirective,
     NumIntPipe,
     Round4Pipe,
-    ChartComponent,
-    ChedanComponent,
-    TodayappointComponent,
-    TodaydealComponent,
-    HistorydealComponent,
-    CapitalflowComponent
+    ChartComponent
   ],
   imports: [
     BrowserModule,

@@ -33,8 +33,5 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-  tab() {
-    document.getElementById('password').focus();
-  }
 
 }

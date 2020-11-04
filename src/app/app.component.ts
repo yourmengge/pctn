@@ -36,6 +36,9 @@ export class AppComponent implements DoCheck {
   /**
    * 连接ws
    */
+  /**
+   * 连接ws
+   */
   connect() {
     console.log('发起ws请求');
     this.socket = new SockJS(this.http.ws);
@@ -66,27 +69,6 @@ export class AppComponent implements DoCheck {
       }, 10000);
     };
   }
-
-  connectWs() {
-    const that = this;
-    that.stompClient.subscribe('/user/' + that.data.getTokenP() + '/topic/market', function (res) {
-      const data = JSON.parse(res.body);
-      if (that.data.searchStockCode === data.stockCode || that.data.getSession('optionCode') === data.stockCode) {
-        that.data.stockHQ = data;
-      }
-    }, function (err) {
-      console.log(err);
-    });
-    if (!that.data.isNull(that.data.searchStockCode)) {
-      if (that.data.getUrl(1) === 'chart') {
-        that.http.getGPHQ(that.data.searchStockCode).subscribe(() => {
-        });
-      } else if (that.data.getUrl(3) === 'buy' || that.data.getUrl(3) === 'sell') {
-        that.http.getGPHQ2(that.data.searchStockCode).subscribe(() => {
-        });
-      }
-    }
-  }
   ngDoCheck() {
     if (!this.data.isNull(this.data.getToken())) {
       if (!this.isConnect) {
@@ -100,5 +82,17 @@ export class AppComponent implements DoCheck {
       }
 
     }
+  }
+
+  connectWs() {
+    const that = this;
+    that.stompClient.subscribe('/user/' + that.data.getTokenP() + '/topic/market', function (res) {
+      const data = JSON.parse(res.body);
+      if (that.data.searchStockCode === data.stockCode || that.data.getSession('optionCode') === data.stockCode) {
+        that.data.stockHQ = data;
+      }
+    }, function (err) {
+      console.log(err);
+    });
   }
 }

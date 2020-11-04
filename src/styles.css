@@ -3,12 +3,8 @@
 body,
 html {
   margin: 0;
-  color: #000;
 }
 
-tr {
-  color: #000;
-}
 .bg {
   background: url(./assets/image/bg.jpg);
   position: fixed;
@@ -35,7 +31,7 @@ tr {
   margin-left: 50px;
 }
 
-.login-right-div img {
+.login-right-div img{
   width: 440px;
   height: 440px;
   margin-top: 40px;
@@ -67,13 +63,9 @@ tr {
 }
 
 .hangqing {
-  height: 300px;
+  height: 274px;
   width: 1200px;
   display: flex;
-}
-
-.ant-menu-item {
-  font-size: 16px !important;
 }
 
 .margin-right-30 {
@@ -95,7 +87,7 @@ tr {
   margin: 0 20px;
   border: none;
   color: #fff;
-  background: #3d6bbf;
+  background: #40a9ff;
   height: 30px;
   cursor: pointer;
   border-radius: 4px;
@@ -110,11 +102,11 @@ tr {
 }
 
 .red {
-  color: rgba(255, 0, 0) !important;
+  color: rgba(197, 8, 8, 0.918) !important;
 }
 
 .blue {
-  color: #3d6bbf !important;
+  color: #40a9ff !important;
 }
 
 .tabs {
@@ -183,32 +175,4 @@ tr {
 
 .logout:hover {
   color: #40a9ff;
-}
-
-.left-menu-icon {
-  background: url(../src/assets/image/buy.png);
-  height: 14px;
-  width: 14px;
-  display: inline-block;
-  margin-right: 11px;
-}
-
-.sell {
-  background: url(../src/assets/image/sell.png);
-}
-
-.chedan {
-  background: url(../src/assets/image/chedan.png);
-}
-
-.chaxun {
-  background: url(../src/assets/image/chaxun.png);
-}
-
-.file {
-  background: url(../src/assets/image/file.png);
-}
-
-.ant-layout-sider-children {
-  border-right: solid 1px #ccc;
 }

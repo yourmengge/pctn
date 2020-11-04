@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of list" (click)='select(data)' [class]="data.profit < 0?'blue':'red'">
+      <tr *ngFor="let data of list" (click)='select(data)'>
         <td>{{data.stockCode}}</td>
         <td>{{data.stockName}}</td>
         <td>{{data.stockCnt}}</td>

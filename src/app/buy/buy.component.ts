@@ -27,6 +27,7 @@ export class BuyComponent implements OnInit, OnDestroy, DoCheck {
   classType: string;
   text2 = '';
   maxBuyCnt = '0';
+  isConfirmLoading = false;
   ygsxf = 0; // 预估手续费
   commission = 0; // 交易佣金
   stockInfo = {
@@ -35,14 +36,12 @@ export class BuyComponent implements OnInit, OnDestroy, DoCheck {
     appointCnt: '',
     appointPrice: '',
   };
-  isConfirmLoading = false;
   stockHQ = this.util.stockHQ;
   preClosePrice: any; // 昨收价
   volumes = [];
   price = [];
   userCode = '';
   totalPrice: number;
-  isLastPrice = false;
   constructor(public http: HttpService, public util: UtilService) {
     this.userCode = this.util.userName;
   }
@@ -79,16 +78,11 @@ export class BuyComponent implements OnInit, OnDestroy, DoCheck {
   ngOnInit() {
     this.util.resetStockHQ();
     this.tabUrl = this.util.getUrl(3);
-    if (this.util.getUrl(2).includes('lastprice')) {
-      this.isLastPrice = true;
-    } else {
-      this.isLastPrice = false;
-    }
-    if (this.util.getUrl(2) === 'buy' || this.util.getUrl(2) === 'lastpricebuy') {
+    if (this.util.getUrl(2) === 'buy') {
       this.text = '买入';
       this.classType = 'BUY';
       this.text2 = '买';
-    } else if (this.util.getUrl(2) === 'sell' || this.util.getUrl(2) === 'lastpricesell') {
+    } else if (this.util.getUrl(2) === 'sell') {
       this.text = '卖出';
       this.classType = 'SELL';
       this.text2 = '卖';
@@ -185,15 +179,7 @@ export class BuyComponent implements OnInit, OnDestroy, DoCheck {
       }
       this.stockInfo.stockName = this.stockHQ.stockName;
       this.radioValue2 = '1';
-      if (this.isLastPrice) { // 市价买入卖出
-        if (this.classType === 'BUY') {
-          this.formatPrice(res['resultInfo']['quotation']['sellLevel']['sellPrice05']);
-        } else {
-          this.formatPrice(res['resultInfo']['quotation']['buyLevel']['buyPrice05']);
-        }
-      } else {
-        this.formatPrice(res['resultInfo']['quotation']['lastPrice']);
-      }
+      this.formatPrice(res['resultInfo']['quotation']['lastPrice']);
       window.clearTimeout(this.util.timeoutQoute);
       this.getFenshituList();
     }, (err) => {
@@ -426,9 +412,9 @@ export class BuyComponent implements OnInit, OnDestroy, DoCheck {
     };
     this.http.order(this.classType, content, this.classType === 'BUY' ? 'OPEN' : 'CLOSE').subscribe((res: Response) => {
       if (res['success']) {
+        this.isConfirmLoading = false;
         this.util.successMessage('委托已提交');
         this.isVisible = false;
-        this.isConfirmLoading = false;
         this.reset();
       }
     }, (err) => {

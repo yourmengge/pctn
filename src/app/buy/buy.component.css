@@ -1,5 +1,5 @@
 .input-p {
-  font-size: 14px;
+  font-size: 12px;
   width: 290px;
   margin-bottom: 5px;
 }
@@ -26,7 +26,7 @@
 }
 
 .zhangfu div {
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   margin: 4px 10px;
   cursor: pointer;
@@ -49,7 +49,7 @@
 }
 
 .BUY {
-  color: rgba(255, 0, 0) !important;
+  color: rgba(197, 8, 8, 0.918) !important;
 }
 
 .isFullScreen-hq {
@@ -64,7 +64,7 @@
 }
 
 .SELL {
-  color: #3d6bbf !important;
+  color: #40a9ff !important;
 }
 
 .price-input {
@@ -91,8 +91,4 @@
 
 .priceType label {
   font-size: 12px;
-}
-
-.ant-radio {
-  color: #000;
 }

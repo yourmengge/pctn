@@ -87,7 +87,6 @@ export class UtilService {
     if (!this.teamCode) {
       this.teamCode = this.getSession('teamCode');
     }
-    this.tokenP = this.getTokenP();
   }
   /**
   * 页面跳转
@@ -328,40 +327,6 @@ export class UtilService {
       return this.tokenP;
     }
   }
-  /**
- * 获取当前时间：毫秒
- */
-  getTime(type, time) {
-    time = new Date(time);
-    const year = time.getFullYear();
-    const month = time.getMonth() + 1;
-    const day = time.getDate();
-    const hour = time.getHours();
-    const minutes = time.getMinutes();
-    const seconds = time.getSeconds();
-    const millseconds = time.getMilliseconds();
-    switch (type) {
-      case 'yyyy-MM-ddhh:mm:ss':
-        return year + '-' + this.add0(month).toString() + '-' + this.add0(day) + ' ' +
-          this.add0(hour) + ':' + this.add0(minutes) + ':' + this.add0(seconds);
-      case 'yyyyMMddhhmmss':
-        return year + this.add0(month).toString() + this.add0(day) +
-          this.add0(hour) + this.add0(minutes) + this.add0(seconds) + this.add0(millseconds);
-      case 'yyyy-MM-dd':
-        return year + '-' + this.add0(month) + '-' + this.add0(day);
-      case 'yyyyMMss':
-        return year + this.add0(month).toString() + this.add0(day);
-      case 'yyyy/MM/dd':
-        return year + '/' + this.add0(month) + '/' + this.add0(day);
-    }
-  }
-  /**
- * 个位数补充0
- */
-  add0(num) {
-    return num < 10 ? '0' + num : num;
-  }
-
   /**
    * 四舍五入保留两位小数
    */

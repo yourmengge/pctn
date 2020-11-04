@@ -9,7 +9,7 @@ export class HttpService {
   public host = '';
   public ws = '';
   constructor(public http: HttpClient, public util: UtilService) {
-    this.host = 'http://192.168.1.86/tn/';
+    this.host = 'http://192.168.1.81/tn/';
     this.ws = this.host + 'webSocket';
   }
 
@@ -99,9 +99,6 @@ export class HttpService {
     return this.POST(`push/subsMarket/${code}`, {});
   }
 
-  /**
-* 请求股票行情
-*/
   getGPHQ2(code) {
     return this.POST(`push/subsMarket/${code}?tokenP=${this.util.getTokenP()}`, {});
   }

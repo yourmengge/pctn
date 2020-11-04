@@ -20,6 +20,7 @@ export class HistoryComponent extends GetList {
     this.dateRange = new Date();
     this.formatDate = new FormatDate();
     this.sDate = this.formatDate.format(new Date(), 'yyyyMMss');
+    this.selectedValue = '1';
     this.url = 'tn/history/appoint';
     this.postData = {
       'beginTime': this.sDate,
@@ -29,14 +30,6 @@ export class HistoryComponent extends GetList {
     this.exportName = '历史委托';
     this.exportUrl = 'tn/history/appoint/export?isTG=true';
     this.exportData = `beginTime=${this.sDate}&endTime=${this.sDate}&accountCode=${this.util.userName}`;
-    if (this.util.getUrl(2) === 'history') {
-      this.selectedValue = '1';
-    } else if (this.util.getUrl(2) === 'bill') {
-      this.selectedValue = '3';
-    } else {
-      this.selectedValue = '2';
-    }
-    this.provinceChange();
   }
 
   search() {
