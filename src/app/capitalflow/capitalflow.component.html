@@ -1,0 +1,31 @@
+<div class="action-div">
+  <nz-range-picker class="margin-right-30" [(ngModel)]="dateRange" (ngModelChange)="onChange($event)"></nz-range-picker>
+  <!-- <button nz-button nzType="default" (click)='exportTable()'>导出列表</button> -->
+</div>
+<div class="table my-scroll">
+  <nz-table #filterTable [nzData]="displayData" id="exportableTable" [nzNoResult]='noDataText'
+    [nzShowPagination]='false'>
+    <thead (nzSortChange)="sort($event)" nzSingleSort>
+      <tr>
+        <th style="width:200px;">变动方式</th>
+        <th>名称</th>
+        <th>金额</th>
+        <th>状态</th>
+        <!-- <th>账户</th> -->
+        <th style="width:200px;">日期</th>
+        <th style="width:400px;">备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of list"  [class]="data.totalAmount < 0?'blue':'red'">
+        <td style="width:200px;">{{data.orderTypeDesc}}</td>
+        <td>{{data.sourceTypeDesc}}</td>
+        <td>{{data.totalAmount}}</td>
+        <td>{{data.auditResultDesc}}</td>
+        <!-- <td>{{data.payeeInfo || '-'}}</td> -->
+        <td style="width:200px;">{{data.createTime}}</td>
+        <td style="width:400px;">{{data.remark}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

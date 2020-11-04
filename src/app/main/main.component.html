@@ -1,0 +1,108 @@
+<nz-layout style="height: 100vh;">
+  <nz-sider [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate" style="background:#fff;">
+    <ul nz-menu [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed" style="    color: #000;">
+      <li (click)='goto("buy")' nz-menu-item class="ant-menu-item {{url =='buy'?' ant-menu-item-selected':''}}"><span>
+          <i class="left-menu-icon"></i><span class="nav-text">买入</span></span></li>
+      <li (click)='goto("lastpricebuy")' nz-menu-item
+        class="ant-menu-item {{url =='lastpricebuy'?' ant-menu-item-selected':''}}"><span>
+          <i class="left-menu-icon"></i><span class="nav-text">市价买入</span></span></li>
+      <li (click)='goto("sell")' nz-menu-item class="ant-menu-item {{url =='sell'?' ant-menu-item-selected':''}}">
+        <span><i class="left-menu-icon sell"></i><span class="nav-text">卖出</span></span></li>
+      <li (click)='goto("lastpricesell")' nz-menu-item
+        class="ant-menu-item {{url =='lastpricesell'?' ant-menu-item-selected':''}}">
+        <span><i class="left-menu-icon sell"></i><span class="nav-text">市价卖出</span></span></li>
+      <li (click)='goto("chedan")' nz-menu-item class="ant-menu-item {{url =='chedan'?' ant-menu-item-selected':''}}">
+        <span><i class="left-menu-icon chedan"></i><span class="nav-text">撤单</span></span></li>
+      <!-- <li (click)='goto("chedan")' nz-menu-item class="ant-menu-item {{url =='sell'?' ant-menu-item-selected':''}}">
+        <span><i class="anticon anticon-logout"></i><span class="nav-text">市价委托</span></span></li> -->
+      <!-- <li (click)='goto("todaydeal")' nz-menu-item
+        class="ant-menu-item {{url =='todaydeal'?' ant-menu-item-selected':''}}">
+        <span><i class="anticon anticon-logout"></i><span class="nav-text">当日成交</span></span></li>
+      <li (click)='goto("todayappoint")' nz-menu-item
+        class="ant-menu-item {{url =='todayappoint'?' ant-menu-item-selected':''}}">
+        <span><i class="anticon anticon-logout"></i><span class="nav-text">当日委托</span></span></li>
+      <li (click)='goto("history")' nz-menu-item
+        class=" ant-menu-item {{ url =='history'?' ant-menu-item-selected':''}}"><span><i
+            class="anticon anticon-clock-circle-o"></i><span class="nav-text">历史查询</span></span></li> -->
+      <li nz-submenu>
+        <span title>
+          <i class="left-menu-icon chaxun"></i>
+          <span style="font-size:16px">查询</span>
+        </span>
+        <ul>
+          <li (click)='goto("hold")' nz-menu-item class="ant-menu-item {{url =='hold'?' ant-menu-item-selected':''}}">
+            <span><i class="left-menu-icon file"></i><span class="nav-text">我的持仓</span></span></li>
+          <li (click)='goto("todayappoint")' nz-menu-item
+            class="ant-menu-item {{url =='todayappoint'?' ant-menu-item-selected':''}}">
+            <span><i class="left-menu-icon file"></i><span class="nav-text">当日委托</span></span></li>
+          <li (click)='goto("history")' nz-menu-item
+            class=" ant-menu-item {{ url =='history'?' ant-menu-item-selected':''}}"><span><i
+                class="left-menu-icon file"></i><span class="nav-text">历史委托</span></span></li>
+          <li (click)='goto("todaydeal")' nz-menu-item
+            class="ant-menu-item {{url =='todaydeal'?' ant-menu-item-selected':''}}">
+            <span><i class="left-menu-icon file"></i><span class="nav-text">当日成交</span></span></li>
+          <li (click)='goto("historydeal")' nz-menu-item
+            class=" ant-menu-item {{ url =='historydeal'?' ant-menu-item-selected':''}}"><span><i
+                class="left-menu-icon file"></i><span class="nav-text">历史成交</span></span></li>
+          <li (click)='goto("bill")' nz-menu-item class=" ant-menu-item {{ url =='bill'?' ant-menu-item-selected':''}}">
+            <span><i class="left-menu-icon file"></i><span class="nav-text">对账单</span></span></li>
+          <li (click)='goto("capitalflow")' nz-menu-item class=" ant-menu-item {{ url =='bill'?' ant-menu-item-selected':''}}">
+            <span><i class="left-menu-icon file"></i><span class="nav-text">资金流水</span></span></li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="修改密码" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <div class="alert-input">
+      <p class="input-p">
+        <span>
+          旧密码
+        </span>
+        <input type="password" placeholder="请输入旧密码" [(ngModel)]="oldPass" nz-input>
+      </p>
+      <p class="input-p">
+        <span>
+          新密码
+        </span>
+        <input type="password" placeholder="请输入新密码" [(ngModel)]="newPass" nz-input maxlength="10">
+      </p>
+      <p class="input-p">
+        <span>
+          确认密码
+        </span>
+        <input type="password" placeholder="请输入新密码" [(ngModel)]="newPass2" nz-input maxlength="10">
+      </p>
+    </div>
+  </nz-modal>
+  <nz-layout style="overflow-y: hidden">
+    <nz-header style="background: #fff; padding:0;    font-size: 17px;">
+      <!-- <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed"
+        (click)="isCollapsed=!isCollapsed"></i> -->
+      <span style="margin-left:30px">账号：</span>
+      <span class="margin-right-30">{{userName}}</span>
+      <span>浮动可用：</span>
+      <span class="margin-right-30">{{userInfo.limitAbleScale}}</span>
+      <span>浮动保证金：</span>
+      <span class="margin-right-30">{{userInfo.floatCashScale}}</span>
+      <span *ngIf="version === 1">总资产：</span>
+      <span class="margin-right-30" *ngIf="version === 1">{{userInfo.totalScale}}</span>
+      <span>持股市值：</span>
+      <span class="margin-right-30">{{userInfo.stockScale}}</span>
+      <span *ngIf="version === 2">安全界线：</span>
+      <span *ngIf="version === 2" class="margin-right-30">{{userInfo.riskValue}}</span>
+      <span>冻结资金：</span>
+      <span class="margin-right-30">{{freezaFee}}</span>
+      <span class="logout" (click)='logout()'>退出登录</span>
+      <span class="logout" (click)='reset()'>修改密码</span>
+
+    </nz-header>
+    <nz-content style="margin:24px 16px 0;overflow-y: auto">
+      <div style="padding:24px; background: #fff; min-height: 800px;">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+<ng-template #trigger>
+  <i class="anticon anticon-up"></i>
+</ng-template>
